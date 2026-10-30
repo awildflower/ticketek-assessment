@@ -4,19 +4,21 @@ export class TicketsPage {
     private readonly page: Page;
     private readonly admitIncrementButton: Locator;
     private readonly mobileDeliveryRadio: Locator;
+    private readonly showAfterpayAdSection: Locator;
     private readonly nextButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.admitIncrementButton = page.getByRole('button', { name: 'Increase quantity' }).first()
         this.mobileDeliveryRadio = page.locator('#delType_S');
+        this.showAfterpayAdSection = page.locator('.show-afterpay-ad');
         this.nextButton = page.locator('#ticket-selection-page-next-button');
     }
 
     // re-usable function to select ticket of different prices
     async selectTicketByPrice(price: string): Promise<void> {
-        const priceRegex: RegExp = new RegExp(`, \\$${price}\$`);
-        const ticketByPriceSelectButton: Locator = this.page.getByRole('button', { name: priceRegex });
+        const priceRegex = new RegExp(`, \\$${price}\$`);
+        const ticketByPriceSelectButton = this.page.getByRole('button', { name: priceRegex });
 
         await ticketByPriceSelectButton.click();
     }
@@ -26,7 +28,7 @@ export class TicketsPage {
     }
 
     async checkMobileDeliveryOption(): Promise<void> {
-        await this.page.locator('.show-afterpay-ad').scrollIntoViewIfNeeded();
+        await this.showAfterpayAdSection.scrollIntoViewIfNeeded();
         await this.mobileDeliveryRadio.setChecked(true, { force: true })
     }
 

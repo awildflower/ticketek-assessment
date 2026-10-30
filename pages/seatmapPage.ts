@@ -1,8 +1,8 @@
-import { expect, Locator, type Page } from '@playwright/test';
+import { Locator, type Page } from '@playwright/test';
 
 export class SeatmapPage {
     private readonly page: Page;
-    private readonly goToCheckoutButton;
+    private readonly goToCheckoutButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -13,6 +13,5 @@ export class SeatmapPage {
         await this.goToCheckoutButton.scrollIntoViewIfNeeded();
         await this.goToCheckoutButton.click({ force: true });
     }
-
 
 }
