@@ -30,12 +30,17 @@ test('Select a free ticket and checkout', async ({ page }) => {
 
   await seatmapPage.clickGoToCheckoutButton();
 
+  /*
+  Check if the login page is loaded, since this is an E2E test (based on instruction),
+  I want to keep the login step in the test instead of using a pre-authenticated session
+  */
   if (await loginPage.isSignInPageLoaded()) {
 
     await loginPage.enterEmailAddress(emailAddress);
     await loginPage.enterPassword(password);
     await loginPage.clickSignInButton();
 
+    // only store the storage state if sign in is successful
     if (await viewBasketPage.isViewBasketPageLoaded()) {
       await page.context().storageState({
         path: storageStateFilePath
@@ -43,11 +48,11 @@ test('Select a free ticket and checkout', async ({ page }) => {
     }
   }
 
-  await viewBasketPage.setMarketingCommsCheckbox(false);
+  await viewBasketPage.setMarketingCommsCheckbox(false); // I don't want to receive marketing to my email :)
   await viewBasketPage.setVenueTCCheckbox(true);
   await viewBasketPage.setShowTCCheckbox(true);
   await viewBasketPage.clickPaymentSubmitButton();
 
-  await expect(confirmPage.getOrderConfirmation()).toHaveText('Order Confirmed');
+  await expect.soft(confirmPage.getOrderConfirmation()).toHaveText('Order Confirmed');
 
 });

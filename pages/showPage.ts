@@ -23,7 +23,7 @@ export class ShowPage {
   }
 
   async dismissCookiePrivacyPrompt(): Promise<void> {
-    // Check if the prompt appears
+    // Make sure the prompt appears before closing
     if (await this.cookiePolicyButton.isVisible())
       await this.closeCookiePromptButton.click();
   }

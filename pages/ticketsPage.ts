@@ -28,13 +28,12 @@ export class TicketsPage {
     }
 
     async checkMobileDeliveryOption(): Promise<void> {
-        await this.showAfterpayAdSection.scrollIntoViewIfNeeded();
         await this.mobileDeliveryRadio.setChecked(true, { force: true })
     }
 
     async clickNextButton(): Promise<void> {
-        await this.nextButton.scrollIntoViewIfNeeded();
         await this.nextButton.click();
+        await this.page.waitForURL('**\/seatmap', { waitUntil: 'load'});
     }
 
 }

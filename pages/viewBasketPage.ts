@@ -21,9 +21,7 @@ export class ViewBasketPage {
         return await this.paymentContent.isVisible();
     }
 
-
     async setMarketingCommsCheckbox(checkStatus: boolean): Promise<void> {
-        await this.showTCCheckbox.scrollIntoViewIfNeeded();
         await this.marketingCommsCheckbox.setChecked(checkStatus, { force: true });
     }
 
@@ -36,7 +34,6 @@ export class ViewBasketPage {
     }
 
     async clickPaymentSubmitButton(): Promise<void> {
-        await this.submitPaymentButton.scrollIntoViewIfNeeded();
         await this.submitPaymentButton.click();
     }
 

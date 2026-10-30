@@ -10,8 +10,7 @@ export class SeatmapPage {
     }
 
     async clickGoToCheckoutButton(): Promise<void> {
-        await this.goToCheckoutButton.scrollIntoViewIfNeeded();
-        await this.goToCheckoutButton.click({ force: true });
+        await this.goToCheckoutButton.click();
     }
 
 }

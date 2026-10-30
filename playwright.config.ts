@@ -46,7 +46,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'auth/storageState.json'
+        storageState: 'auth/storageState.json' // comment this out if you dont have a stroage state file yet
       },
     },
 
