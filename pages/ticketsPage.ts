@@ -4,14 +4,12 @@ export class TicketsPage {
     private readonly page: Page;
     private readonly admitIncrementButton: Locator;
     private readonly mobileDeliveryRadio: Locator;
-    private readonly showAfterpayAdSection: Locator;
     private readonly nextButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.admitIncrementButton = page.getByRole('button', { name: 'Increase quantity' }).first()
         this.mobileDeliveryRadio = page.locator('#delType_S');
-        this.showAfterpayAdSection = page.locator('.show-afterpay-ad');
         this.nextButton = page.locator('#ticket-selection-page-next-button');
     }
 
